@@ -16,6 +16,7 @@
         <AssociationConnector Association="DailyActivityDBModel.FK_ActivitySubCategory_ActivityCategory" ManuallyRouted="false" />
         <AssociationConnector Association="DailyActivityDBModel.FK_User_ActivityDetails" ManuallyRouted="false" />
         <AssociationConnector Association="DailyActivityDBModel.FK_User_Job" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DailyActivityDBModel.Login" Width="1.5" PointX="11.75" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

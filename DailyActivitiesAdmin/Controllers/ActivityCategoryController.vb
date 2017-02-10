@@ -40,12 +40,12 @@ Namespace DailyActivitiesAdmin
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include := "act_cat_id,name,description")> ByVal activitycategory As ActivityCategory) As ActionResult
+        Function Create(<Bind(Include:="act_cat_id,name,description")> ByVal activitycategory As ActivityCategory) As ActionResult
             If ModelState.IsValid Then
                 db.ActivityCategories.Add(activitycategory)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
-            End If 
+            End If
             Return View(activitycategory)
         End Function
 
@@ -66,7 +66,7 @@ Namespace DailyActivitiesAdmin
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include := "act_cat_id,name,description")> ByVal activitycategory As ActivityCategory) As ActionResult
+        Function Edit(<Bind(Include:="act_cat_id,name,description")> ByVal activitycategory As ActivityCategory) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(activitycategory).State = EntityState.Modified
                 db.SaveChanges()

@@ -46,14 +46,25 @@
     <Property Name="job_id" Type="int" Nullable="false" />
     <Property Name="jon_name" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="confirmpassword" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="user_id" />
       <PropertyRef Name="job_id" />
     </Key>
     <Property Name="user_id" Type="int" Nullable="false" />
-    <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="dob" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="pob" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="job_id" Type="int" Nullable="false" />
@@ -138,6 +149,7 @@
     <EntitySet Name="ActivityDetails" EntityType="Self.ActivityDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActivitySubCategory" EntityType="Self.ActivitySubCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ActivityDetails_Activity" Association="Self.FK_ActivityDetails_Activity">
       <End Role="Activity" EntitySet="Activity" />

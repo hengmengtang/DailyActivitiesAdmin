@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DailyActivityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DailyActivityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="act_id" />
@@ -51,14 +51,25 @@
           <Property Name="job_id" Type="int" Nullable="false" />
           <Property Name="jon_name" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="confirmpassword" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="user_id" />
             <PropertyRef Name="job_id" />
           </Key>
           <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="dob" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="pob" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="job_id" Type="int" Nullable="false" />
@@ -143,6 +154,7 @@
           <EntitySet Name="ActivityDetails" EntityType="Self.ActivityDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivitySubCategory" EntityType="Self.ActivitySubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ActivityDetails_Activity" Association="Self.FK_ActivityDetails_Activity">
             <End Role="Activity" EntitySet="Activity" />
@@ -165,8 +177,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DailyActivityDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -230,8 +241,6 @@
             <PropertyRef Name="job_id" />
           </Key>
           <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="dob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="job_id" Type="Int32" Nullable="false" />
@@ -339,7 +348,21 @@
             <End Role="Job" EntitySet="Jobs" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Logins" EntityType="DailyActivityDBModel.Login" />
         </EntityContainer>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="confirmpassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -401,8 +424,6 @@
             <EntityTypeMapping TypeName="DailyActivityDBModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="user_name" ColumnName="user_name" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="dob" ColumnName="dob" />
                 <ScalarProperty Name="pob" ColumnName="pob" />
                 <ScalarProperty Name="job_id" ColumnName="job_id" />
@@ -410,6 +431,20 @@
                 <ScalarProperty Name="civil_status" ColumnName="civil_status" />
                 <ScalarProperty Name="tel" ColumnName="tel" />
                 <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="DailyActivityDBModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="confirmpassword" ColumnName="confirmpassword" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

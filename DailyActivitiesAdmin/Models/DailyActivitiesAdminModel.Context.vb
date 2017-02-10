@@ -28,5 +28,6 @@ Partial Public Class DailyActivityDBEntities1
     Public Overridable Property ActivitySubCategories() As DbSet(Of ActivitySubCategory)
     Public Overridable Property Jobs() As DbSet(Of Job)
     Public Overridable Property Users() As DbSet(Of User)
+    Public Overridable Property Logins() As DbSet(Of Login)
 
 End Class

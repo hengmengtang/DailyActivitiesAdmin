@@ -233,6 +233,9 @@
     <Compile Include="Models\Job.vb">
       <DependentUpon>DailyActivitiesAdminModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Login.vb">
+      <DependentUpon>DailyActivitiesAdminModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.vb">
       <DependentUpon>DailyActivitiesAdminModel.tt</DependentUpon>
     </Compile>

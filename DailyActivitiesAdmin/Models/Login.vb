@@ -10,17 +10,14 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class User
+Partial Public Class Login
     Public Property user_id As Integer
-    Public Property dob As String
-    Public Property pob As String
-    Public Property job_id As Integer
-    Public Property job_place As String
-    Public Property civil_status As Boolean
-    Public Property tel As String
+    Public Property first_name As String
+    Public Property last_name As String
+    Public Property username As String
+    Public Property gender As String
     Public Property email As String
-
-    Public Overridable Property ActivityDetail As ActivityDetail
-    Public Overridable Property Job As Job
+    Public Property password As String
+    Public Property confirmpassword As String
 
 End Class
