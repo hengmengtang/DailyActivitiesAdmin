@@ -191,17 +191,16 @@
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
-    <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\ActivityCategoryController.vb" />
     <Compile Include="Controllers\ActivityController.vb" />
     <Compile Include="Controllers\ActivityDetailController.vb" />
     <Compile Include="Controllers\ActivitySubCategoryController.vb" />
     <Compile Include="Controllers\JobController.vb" />
     <Compile Include="Controllers\UserController.vb" />
+    <Compile Include="Controllers\UserLoginController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\Activity.vb">
       <DependentUpon>DailyActivitiesAdminModel.tt</DependentUpon>
     </Compile>
@@ -233,10 +232,11 @@
     <Compile Include="Models\Job.vb">
       <DependentUpon>DailyActivitiesAdminModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Login.vb">
+    <Compile Include="Models\UserDBContext.vb" />
+    <Compile Include="Models\User.vb">
       <DependentUpon>DailyActivitiesAdminModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.vb">
+    <Compile Include="Models\UserAccount.vb">
       <DependentUpon>DailyActivitiesAdminModel.tt</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -254,7 +254,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="Startup.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -307,15 +306,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Views\Account\_ChangePasswordPartial.vbhtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.vbhtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.vbhtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.vbhtml" />
-    <Content Include="Views\Account\Login.vbhtml" />
-    <Content Include="Views\Account\Manage.vbhtml" />
-    <Content Include="Views\Account\Register.vbhtml" />
     <Content Include="Views\Shared\_LoginPartial.vbhtml" />
     <Content Include="Views\ActivityCategory\Create.vbhtml" />
     <Content Include="Views\ActivityCategory\Delete.vbhtml" />
@@ -347,6 +337,10 @@
     <Content Include="Views\User\Details.vbhtml" />
     <Content Include="Views\User\Edit.vbhtml" />
     <Content Include="Views\User\Index.vbhtml" />
+    <Content Include="Views\UserLogin\Register.vbhtml" />
+    <Content Include="Views\UserLogin\Login.vbhtml" />
+    <Content Include="Views\UserLogin\LoggedIn.vbhtml" />
+    <Content Include="Views\UserLogin\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -366,9 +360,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.vbhtml" />
-    <Content Include="Views\Home\About.vbhtml" />
-    <Content Include="Views\Home\Contact.vbhtml" />
-    <Content Include="Views\Home\Index.vbhtml" />
     <Content Include="Views\Shared\Error.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Web.config" />

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="844fe31b4e8f4f5683e8201590b4659e" Name="Diagram1">
+      <Diagram DiagramId="844fe31b4e8f4f5683e8201590b4659e" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="DailyActivityDBModel.Activity" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DailyActivityDBModel.ActivityCategory" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DailyActivityDBModel.ActivityDetail" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
@@ -16,8 +16,8 @@
         <AssociationConnector Association="DailyActivityDBModel.FK_ActivitySubCategory_ActivityCategory" ManuallyRouted="false" />
         <AssociationConnector Association="DailyActivityDBModel.FK_User_ActivityDetails" ManuallyRouted="false" />
         <AssociationConnector Association="DailyActivityDBModel.FK_User_Job" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DailyActivityDBModel.Login" Width="1.5" PointX="11.75" PointY="1" />
-      </Diagram>
+        <EntityTypeShape EntityType="DailyActivityDBModel.UserAccount" Width="1.5" PointX="12.375" PointY="2.5" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

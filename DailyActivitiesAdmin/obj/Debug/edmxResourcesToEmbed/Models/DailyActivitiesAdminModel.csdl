@@ -167,9 +167,9 @@
       <End Role="Job" EntitySet="Jobs" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <EntitySet Name="Logins" EntityType="DailyActivityDBModel.Login" />
+    <EntitySet Name="UserAccounts" EntityType="DailyActivityDBModel.UserAccount" />
   </EntityContainer>
-  <EntityType Name="Login">
+  <EntityType Name="UserAccount">
     <Key>
       <PropertyRef Name="user_id" />
     </Key>
