@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DailyActivityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="activity_id" />
+    </Key>
+    <Property Name="activity_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="activity_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="start_time" Type="time" Precision="7" Nullable="false" />
+    <Property Name="end_time" Type="time" Precision="7" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="execute_status" Type="bit" Nullable="false" />
+    <Property Name="description" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="ActivityDetail">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="activity_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="activity_id" Type="int" Nullable="false" />
+    <Property Name="CCY" Type="varchar" MaxLength="6" />
+    <Property Name="rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExchangeRate">
+    <Key>
+      <PropertyRef Name="SEQ" />
+    </Key>
+    <Property Name="SEQ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FY" Type="int" Nullable="false" />
+    <Property Name="MONTH" Type="int" Nullable="false" />
+    <Property Name="CCY" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="RATE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="confirmpassword" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ActivityDetail_Activity">
+    <End Role="Activity" Type="Self.Activity" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ActivityDetail" Type="Self.ActivityDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="activity_id" />
+      </Principal>
+      <Dependent Role="ActivityDetail">
+        <PropertyRef Name="activity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActivityDetail_UserAccount">
+    <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ActivityDetail" Type="Self.ActivityDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="ActivityDetail">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ActivityToday" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Create_DailyActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="activity_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="data" Type="date" Mode="In" />
+    <Parameter Name="start_time" Type="time" Mode="In" />
+    <Parameter Name="end_time" Type="time" Mode="In" />
+    <Parameter Name="location" Type="nvarchar" Mode="In" />
+    <Parameter Name="excute_status" Type="bit" Mode="In" />
+    <Parameter Name="currency" Type="varchar" Mode="In" />
+    <Parameter Name="cost" Type="decimal" Mode="In" />
+    <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="GetDailyActivityFromDateToDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="start_date" Type="date" Mode="In" />
+    <Parameter Name="end_date" Type="date" Mode="In" />
+  </Function>
+  <EntityContainer Name="DailyActivityDBModelStoreContainer">
+    <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActivityDetail" EntityType="Self.ActivityDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExchangeRate" EntityType="Self.ExchangeRate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ActivityDetail_Activity" Association="Self.FK_ActivityDetail_Activity">
+      <End Role="Activity" EntitySet="Activity" />
+      <End Role="ActivityDetail" EntitySet="ActivityDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActivityDetail_UserAccount" Association="Self.FK_ActivityDetail_UserAccount">
+      <End Role="UserAccount" EntitySet="UserAccount" />
+      <End Role="ActivityDetail" EntitySet="ActivityDetail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

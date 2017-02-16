@@ -11,31 +11,13 @@ End Code
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(Function(model) model.user_id)
+            @Html.DisplayNameFor(Function(model) model.CCY)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.date)
+            @Html.DisplayNameFor(Function(model) model.rate)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.start_time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.end_time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.execute_status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.cost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Activity.act_id)
+            @Html.DisplayNameFor(Function(model) model.Cost)
         </th>
         <th></th>
     </tr>
@@ -43,36 +25,18 @@ End Code
 @For Each item In Model
     @<tr>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.user_id)
+            @Html.DisplayFor(Function(modelItem) item.CCY)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.date)
+            @Html.DisplayFor(Function(modelItem) item.rate)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.start_time)
+            @Html.DisplayFor(Function(modelItem) item.Cost)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.end_time)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.location)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.execute_status)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.cost)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Activity.act_id)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.act_det_id }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.act_det_id }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.act_det_id })
+            @*@Html.ActionLink("Edit", "Edit", New With {.id = item.PrimaryKey}) |
+            @Html.ActionLink("Details", "Details", New With {.id = item.PrimaryKey}) |
+            @Html.ActionLink("Delete", "Delete", New With {.id = item.PrimaryKey})*@
         </td>
     </tr>
 Next

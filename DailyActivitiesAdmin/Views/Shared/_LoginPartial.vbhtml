@@ -1,7 +1,7 @@
 ﻿@Imports Microsoft.AspNet.Identity
 
 @If Request.IsAuthenticated
-    @Using Html.BeginForm("LogOff", "Account", FormMethod.Post, New With { .id = "logoutForm", .class = "navbar-right" })
+    @Using Html.BeginForm("LogOut", "UserAccount", FormMethod.Post, New With {.id = "logoutForm", .class = "navbar-right"})
         @Html.AntiForgeryToken()
         @<ul class="nav navbar-nav navbar-right">
             <li>

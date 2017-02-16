@@ -44,27 +44,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Jobs">
-      <EntityTypeMapping TypeName="DailyActivityDBModel.Job">
-        <MappingFragment StoreEntitySet="Job">
-          <ScalarProperty Name="job_id" ColumnName="job_id" />
-          <ScalarProperty Name="jon_name" ColumnName="jon_name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserAccounts">
-      <EntityTypeMapping TypeName="DailyActivityDBModel.UserAccount">
-        <MappingFragment StoreEntitySet="UserAccount">
-          <ScalarProperty Name="confirmpassword" ColumnName="confirmpassword" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="last_name" ColumnName="last_name" />
-          <ScalarProperty Name="first_name" ColumnName="first_name" />
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -1,19 +1,19 @@
-﻿body {
+﻿/*body {
     padding-top: 50px;
     padding-bottom: 20px;
-}
+}*/
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
+/*.body-content {
+    padding-left: 20px;
     padding-right: 15px;
-}
+}*/
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 480px;
 }
 
 /* styles for validation helpers */
@@ -39,4 +39,94 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+/*mengtang style*/
+.nav-tabs{
+    border-bottom: none;
+}
+
+a{
+    color: black;
+}
+
+.panel-primary>.panel-heading{
+    border-bottom-color: white;
+}
+
+.panel-primary{
+    border: gray;
+}
+.nav-tabs>li{
+    margin-bottom: -12px;
+}
+
+a:hover{
+    color:  white;
+}
+
+#page-wrapper {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 0 30px;
+    border-left: 1px solid #e7e7e7;
+}
+
+.sidebar {
+	z-index: 1;
+	position: absolute;
+    width: 250px;
+	margin-top: 5px;
+}
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+#footer {
+    color: black;
+    border-radius: 3px;
+    margin: 2px;
+}
+
+#side-menu>li>a{
+    color: white;
+}
+
+#side-menu>li>a:hover{
+    color: #424242;
+}
+
+#side-menu>li>a:focus{
+    color: black;
+}
+
+#sidebar {
+    border-radius: 3px;
+}
+
+#navbar-top{
+    margin: 2px;
+}
+
+#page-body{
+    background-color: black;
+    margin: 0 2px 0 2px;
+    border-radius: 3px;
+    min-height: 729px;
+}
+
+#sidebar-nav{
+    padding: 0px;
+}
+
+#page-wrapper{
+    min-height: 730px;
+    background-color: white;
+    height: inherit;
+    border-radius: 3px;
 }

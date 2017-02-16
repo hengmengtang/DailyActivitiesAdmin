@@ -11,12 +11,11 @@ Namespace DailyActivitiesAdmin
     Public Class ActivityDetailController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New DailyActivityDBEntities1
+        Private db As New DailyActivityDBEntities
 
         ' GET: /ActivityDetail/
         Function Index() As ActionResult
-            Dim activitydetails = db.ActivityDetails.Include(Function(a) a.Activity)
-            Return View(activitydetails.ToList())
+            Return View(db.ActivityDetails.ToList())
         End Function
 
         ' GET: /ActivityDetail/Details/5
@@ -33,7 +32,6 @@ Namespace DailyActivitiesAdmin
 
         ' GET: /ActivityDetail/Create
         Function Create() As ActionResult
-            ViewBag.act_id = New SelectList(db.Activities, "act_id", "act_id")
             Return View()
         End Function
 
@@ -42,13 +40,12 @@ Namespace DailyActivitiesAdmin
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include := "act_det_id,user_id,act_id,date,start_time,end_time,location,execute_status,description,cost")> ByVal activitydetail As ActivityDetail) As ActionResult
+        Function Create(<Bind(Include := "user_id,activity_id,CCY,rate,Cost")> ByVal activitydetail As ActivityDetail) As ActionResult
             If ModelState.IsValid Then
                 db.ActivityDetails.Add(activitydetail)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If 
-            ViewBag.act_id = New SelectList(db.Activities, "act_id", "act_id", activitydetail.act_id)
             Return View(activitydetail)
         End Function
 
@@ -61,7 +58,6 @@ Namespace DailyActivitiesAdmin
             If IsNothing(activitydetail) Then
                 Return HttpNotFound()
             End If
-            ViewBag.act_id = New SelectList(db.Activities, "act_id", "act_id", activitydetail.act_id)
             Return View(activitydetail)
         End Function
 
@@ -70,13 +66,12 @@ Namespace DailyActivitiesAdmin
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include := "act_det_id,user_id,act_id,date,start_time,end_time,location,execute_status,description,cost")> ByVal activitydetail As ActivityDetail) As ActionResult
+        Function Edit(<Bind(Include := "user_id,activity_id,CCY,rate,Cost")> ByVal activitydetail As ActivityDetail) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(activitydetail).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.act_id = New SelectList(db.Activities, "act_id", "act_id", activitydetail.act_id)
             Return View(activitydetail)
         End Function
 

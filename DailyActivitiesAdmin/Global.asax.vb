@@ -1,4 +1,5 @@
-﻿Imports System.Web.Optimization
+﻿Imports System.Data.Entity
+Imports System.Web.Optimization
 
 Public Class MvcApplication
     Inherits System.Web.HttpApplication

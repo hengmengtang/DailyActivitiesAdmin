@@ -39,26 +39,6 @@
     <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="description" Type="varchar(max)" />
   </EntityType>
-  <EntityType Name="Job">
-    <Key>
-      <PropertyRef Name="job_id" />
-    </Key>
-    <Property Name="job_id" Type="int" Nullable="false" />
-    <Property Name="jon_name" Type="varchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="UserAccount">
-    <Key>
-      <PropertyRef Name="user_id" />
-    </Key>
-    <Property Name="user_id" Type="int" Nullable="false" />
-    <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="confirmpassword" Type="varchar" MaxLength="50" Nullable="false" />
-  </EntityType>
   <Association Name="FK_ActivityDetails_Activity">
     <End Role="Activity" Type="Self.Activity" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -106,8 +86,6 @@
     <EntitySet Name="ActivityCategory" EntityType="Self.ActivityCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActivityDetails" EntityType="Self.ActivityDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActivitySubCategory" EntityType="Self.ActivitySubCategory" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ActivityDetails_Activity" Association="Self.FK_ActivityDetails_Activity">
       <End Role="Activity" EntitySet="Activity" />
       <End Role="ActivityDetails" EntitySet="ActivityDetails" />

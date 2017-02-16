@@ -11,75 +11,27 @@ End Code
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(Function(model) model.user_id)
+            @Html.DisplayNameFor(Function(model) model.CCY)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.user_id)
+            @Html.DisplayFor(Function(model) model.CCY)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.date)
+            @Html.DisplayNameFor(Function(model) model.rate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.date)
+            @Html.DisplayFor(Function(model) model.rate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.start_time)
+            @Html.DisplayNameFor(Function(model) model.Cost)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.start_time)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.end_time)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.end_time)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.execute_status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.execute_status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.cost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.cost)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Activity.act_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.Activity.act_id)
+            @Html.DisplayFor(Function(model) model.Cost)
         </dd>
 
     </dl>

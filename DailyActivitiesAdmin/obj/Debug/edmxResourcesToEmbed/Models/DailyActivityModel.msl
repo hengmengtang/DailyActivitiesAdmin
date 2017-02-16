@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DailyActivityDBModelStoreContainer" CdmEntityContainer="DailyActivityDBEntities">
+    <EntitySetMapping Name="Activities">
+      <EntityTypeMapping TypeName="DailyActivityDBModel.Activity">
+        <MappingFragment StoreEntitySet="Activity">
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="execute_status" ColumnName="execute_status" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActivityDetails">
+      <EntityTypeMapping TypeName="DailyActivityDBModel.ActivityDetail">
+        <MappingFragment StoreEntitySet="ActivityDetail">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="CCY" ColumnName="CCY" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExchangeRates">
+      <EntityTypeMapping TypeName="DailyActivityDBModel.ExchangeRate">
+        <MappingFragment StoreEntitySet="ExchangeRate">
+          <ScalarProperty Name="SEQ" ColumnName="SEQ" />
+          <ScalarProperty Name="FY" ColumnName="FY" />
+          <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+          <ScalarProperty Name="CCY" ColumnName="CCY" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAccounts">
+      <EntityTypeMapping TypeName="DailyActivityDBModel.UserAccount">
+        <MappingFragment StoreEntitySet="UserAccount">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="confirmpassword" ColumnName="confirmpassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ActivityToday" FunctionName="DailyActivityDBModel.Store.ActivityToday">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DailyActivityDBModel.ActivityToday_Result">
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="execute_status" ColumnName="execute_status" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Create_DailyActivity" FunctionName="DailyActivityDBModel.Store.Create_DailyActivity" />
+    <FunctionImportMapping FunctionImportName="GetDailyActivityFromDateToDate" FunctionName="DailyActivityDBModel.Store.GetDailyActivityFromDateToDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DailyActivityDBModel.GetDailyActivityFromDateToDate_Result">
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="execute_status" ColumnName="execute_status" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

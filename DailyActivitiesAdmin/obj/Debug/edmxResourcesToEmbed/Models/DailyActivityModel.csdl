@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DailyActivityDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="activity_id" />
+    </Key>
+    <Property Name="activity_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="activity_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="start_time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="end_time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="execute_status" Type="Boolean" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ActivityDetails" Relationship="Self.FK_ActivityDetail_Activity" FromRole="Activity" ToRole="ActivityDetail" />
+  </EntityType>
+  <EntityType Name="ActivityDetail">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="activity_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="activity_id" Type="Int32" Nullable="false" />
+    <Property Name="CCY" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Activity" Relationship="Self.FK_ActivityDetail_Activity" FromRole="ActivityDetail" ToRole="Activity" />
+    <NavigationProperty Name="UserAccount" Relationship="Self.FK_ActivityDetail_UserAccount" FromRole="ActivityDetail" ToRole="UserAccount" />
+  </EntityType>
+  <EntityType Name="ExchangeRate">
+    <Key>
+      <PropertyRef Name="SEQ" />
+    </Key>
+    <Property Name="SEQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FY" Type="Int32" Nullable="false" />
+    <Property Name="MONTH" Type="Int32" Nullable="false" />
+    <Property Name="CCY" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RATE" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="confirmpassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ActivityDetails" Relationship="Self.FK_ActivityDetail_UserAccount" FromRole="UserAccount" ToRole="ActivityDetail" />
+  </EntityType>
+  <Association Name="FK_ActivityDetail_Activity">
+    <End Role="Activity" Type="Self.Activity" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ActivityDetail" Type="Self.ActivityDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="activity_id" />
+      </Principal>
+      <Dependent Role="ActivityDetail">
+        <PropertyRef Name="activity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActivityDetail_UserAccount">
+    <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ActivityDetail" Type="Self.ActivityDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="ActivityDetail">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DailyActivityDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Activities" EntityType="Self.Activity" />
+    <EntitySet Name="ActivityDetails" EntityType="Self.ActivityDetail" />
+    <EntitySet Name="ExchangeRates" EntityType="Self.ExchangeRate" />
+    <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
+    <AssociationSet Name="FK_ActivityDetail_Activity" Association="Self.FK_ActivityDetail_Activity">
+      <End Role="Activity" EntitySet="Activities" />
+      <End Role="ActivityDetail" EntitySet="ActivityDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActivityDetail_UserAccount" Association="Self.FK_ActivityDetail_UserAccount">
+      <End Role="UserAccount" EntitySet="UserAccounts" />
+      <End Role="ActivityDetail" EntitySet="ActivityDetails" />
+    </AssociationSet>
+    <FunctionImport Name="ActivityToday" ReturnType="Collection(DailyActivityDBModel.ActivityToday_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Create_DailyActivity">
+      <Parameter Name="user_name" Mode="In" Type="String" />
+      <Parameter Name="activity_name" Mode="In" Type="String" />
+      <Parameter Name="data" Mode="In" Type="DateTime" />
+      <Parameter Name="start_time" Mode="In" Type="Time" />
+      <Parameter Name="end_time" Mode="In" Type="Time" />
+      <Parameter Name="location" Mode="In" Type="String" />
+      <Parameter Name="excute_status" Mode="In" Type="Boolean" />
+      <Parameter Name="currency" Mode="In" Type="String" />
+      <Parameter Name="cost" Mode="In" Type="Decimal" />
+      <Parameter Name="description" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDailyActivityFromDateToDate" ReturnType="Collection(DailyActivityDBModel.GetDailyActivityFromDateToDate_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="start_date" Mode="In" Type="DateTime" />
+      <Parameter Name="end_date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="ActivityToday_Result">
+    <Property Type="String" Name="activity_name" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="date" Nullable="false" />
+    <Property Type="Time" Name="start_time" Nullable="false" />
+    <Property Type="Time" Name="end_time" Nullable="false" />
+    <Property Type="String" Name="location" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="execute_status" Nullable="false" />
+    <Property Type="String" Name="cost" Nullable="true" MaxLength="28" />
+    <Property Type="String" Name="description" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Create_DailyActivity_Result">
+    <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+    <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+    <Property Type="Int32" Name="ErrorState" Nullable="true" />
+    <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+    <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="GetDailyActivityFromDateToDate_Result">
+    <Property Type="String" Name="activity_name" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="date" Nullable="false" />
+    <Property Type="Time" Name="start_time" Nullable="false" />
+    <Property Type="Time" Name="end_time" Nullable="false" />
+    <Property Type="String" Name="location" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="execute_status" Nullable="false" />
+    <Property Type="String" Name="cost" Nullable="true" MaxLength="28" />
+    <Property Type="String" Name="description" Nullable="true" />
+  </ComplexType>
+</Schema>

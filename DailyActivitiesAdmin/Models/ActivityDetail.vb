@@ -11,18 +11,13 @@ Imports System
 Imports System.Collections.Generic
 
 Partial Public Class ActivityDetail
-    Public Property act_det_id As Integer
     Public Property user_id As Integer
-    Public Property act_id As Integer
-    Public Property [date] As Date
-    Public Property start_time As System.TimeSpan
-    Public Property end_time As System.TimeSpan
-    Public Property location As String
-    Public Property execute_status As Boolean
-    Public Property description As String
-    Public Property cost As Nullable(Of Integer)
+    Public Property activity_id As Integer
+    Public Property CCY As String
+    Public Property rate As Nullable(Of Decimal)
+    Public Property Cost As Decimal
 
     Public Overridable Property Activity As Activity
-    Public Overridable Property Users As ICollection(Of User) = New HashSet(Of User)
+    Public Overridable Property UserAccount As UserAccount
 
 End Class
